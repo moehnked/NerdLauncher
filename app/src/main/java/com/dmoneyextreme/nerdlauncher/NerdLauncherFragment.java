@@ -64,23 +64,19 @@ public class NerdLauncherFragment extends Fragment {
 
     private class ActivityHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ResolveInfo mResolveInfo;
-        //private TextView mNameTextView;
-        private ImageButton mAppIcon;
+        private TextView mNameTextView;
 
         public ActivityHolder(View itemView){
             super(itemView);
-            //mNameTextView = (TextView) itemView;
-            //mNameTextView.setOnClickListener(this);
-            mAppIcon = itemView.findViewById(R.id.icon_button);
-            mAppIcon.setOnClickListener(this);
+            mNameTextView = (TextView) itemView;
+            mNameTextView.setOnClickListener(this);
         }
 
         public void bindActivity(ResolveInfo resolveInfo){
             mResolveInfo = resolveInfo;
             PackageManager pm = getActivity().getPackageManager();
             String appName = mResolveInfo.loadLabel(pm).toString();
-            //mNameTextView.setText(appName);
-            mAppIcon.setBackground(resolveInfo.loadIcon(pm));
+            mNameTextView.setText(appName);
         }
 
         @Override
@@ -104,7 +100,7 @@ public class NerdLauncherFragment extends Fragment {
         @Override
         public ActivityHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.list_item_icon, parent, false);
+            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
             return new ActivityHolder(view);
         }
 
